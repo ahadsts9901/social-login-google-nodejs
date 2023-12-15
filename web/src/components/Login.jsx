@@ -4,6 +4,8 @@ import { Apple, Facebook, Google } from 'react-bootstrap-icons'
 // import axios from 'axios'
 import { baseUrl } from '../core.mjs'
 
+// colors
+
 // purple ===> #5B225B
 // orange ===> #E6523A
 // white ====> #F7F9FB
@@ -12,6 +14,7 @@ import { baseUrl } from '../core.mjs'
 
 const Login = () => {
 
+    // google login function
     const googleLogin = () => {
         window.open(`${baseUrl}/api/v1/auth/google`, "_self");
     };

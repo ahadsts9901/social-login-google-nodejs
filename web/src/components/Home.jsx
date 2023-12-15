@@ -5,8 +5,10 @@ import { baseUrl } from '../core.mjs'
 import { GlobalContext } from "../context/context";
 const Home = () => {
 
+  // context api ( user data )
   const { state, dispatch } = useContext(GlobalContext)
 
+  // logout function
   const logout = async () => {
     try {
       const resp = await axios.post(`${baseUrl}/api/v1/auth/logout`)

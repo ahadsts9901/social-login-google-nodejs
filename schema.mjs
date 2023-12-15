@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// user schema ( mongoose )
 const userSchema = new mongoose.Schema({
     profilePhoto: {
         type: String,
@@ -55,15 +56,19 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', function (next) {
-    // Convert the email to lowercase before saving
+
+    // convert the email to lowercase before saving
     if (this.email) {
         this.email = this.email.toLowerCase();
     }
     next();
+
 });
 
+// give a collection name
 export const userModel = mongoose.model("social-login", userSchema);
 
+// user object will like this
 export const sampleUser = `{
     "firstName": "John", 
     "lastName": "Doe", 

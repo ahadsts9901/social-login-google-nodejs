@@ -16,11 +16,13 @@ import { baseUrl } from "./core.mjs";
 
 const App = () => {
 
+  // context api ( user data )
   const { state, dispatch } = useContext(GlobalContext);
   const [user, setUser] = useState(null)
 
   const navigate = useNavigate()
 
+  // axios interceptor ( for true credentials on every axios request )
   useEffect(() => {
     axios.interceptors.request.use(
       function (config) {
@@ -33,6 +35,7 @@ const App = () => {
       }
     );
 
+    // get user function
     getUser();
 
     return () => {
@@ -41,6 +44,7 @@ const App = () => {
 
   }, []);
 
+  // get user from profile api ( protected route )
   const getUser = async () => {
     try {
       const userResponse = await axios.get(`${baseUrl}/api/v1/profile`);
@@ -57,6 +61,8 @@ const App = () => {
 
   return (
     <div className="div">
+
+      {/* if user is logged in */}
       {state.isLogin === true ? (
         <>
           <Routes>
@@ -66,6 +72,7 @@ const App = () => {
         </>
       ) : null}
 
+      {/* if user is not logged in */}
       {state.isLogin === false ? (
         <>
           <Routes>
@@ -75,6 +82,7 @@ const App = () => {
         </>
       ) : null}
 
+      {/* splash screen */}
       {
         state.isLogin === null ?
           <div className="w-[100vw] h-[100vh] flex justify-center items-center">

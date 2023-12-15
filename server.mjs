@@ -1,4 +1,3 @@
-// import cookieSession from "cookie-session";
 import express from "express";
 import cors from "cors";
 import passport from "passport";
@@ -13,10 +12,12 @@ import "./mongodb.mjs";
 
 import authRoute from "./routes/auth.mjs";
 
+// initialization
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+// cors setup
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -25,10 +26,15 @@ app.use(
   })
 );
 
+// initialize passport
 app.use(passport.initialize());
 
+// routes
+
+// auth route
 app.use("/api/v1/auth", authRoute);
 
+// protected route ( jwt authentication )
 app.use("/api/v1", (req, res, next) => {
 
   const token = req.cookies.token;
@@ -52,17 +58,20 @@ app.use("/api/v1", (req, res, next) => {
   }
 });
 
+// profile api for user authentication ( protected route )
 app.get("/api/v1/profile", (req, res, next) => {
   res.send(req.currentUser);
   next();
 });
 
+// server connection with front end
 app.use(express.static(_dirname + "/web/build"));
 app.get("*", (req, res) => {
   res.sendFile(_dirname + "/web/build/index.html");
 })
 app.use("*", express.static(_dirname + "/web/build"));
 
+// ports
 const PORT = process.env.PORT || 5002;
 
 app.listen(PORT, () => {
