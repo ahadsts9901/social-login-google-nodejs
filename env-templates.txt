@@ -1,0 +1,7 @@
+MONGO_URI =
+SECRET =
+
+# for google login
+
+GOOGLE_CLIENT_ID =
+GOOGLE_CLIENT_SECRET =
