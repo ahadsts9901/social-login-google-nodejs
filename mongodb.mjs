@@ -5,6 +5,7 @@ const uri = process.env.MONGO_URI
 // console.log("uri: ", uri);
 
 async function run() {
+    // function
     try {
         await mongoose.connect(uri, {
             dbName: 'cruddb',
