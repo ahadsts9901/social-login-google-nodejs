@@ -19,6 +19,11 @@ const Login = () => {
         window.open(`${baseUrl}/api/v1/auth/google`, "_self");
     };
 
+    // facebook login function
+    const facebookLogin = () => {
+        window.open(`${baseUrl}/api/v1/auth/facebook`, "_self");
+    }
+
     return (
         <div className="login w-[100%] h-[100vh] p-4 flex flex-col justify-center items-center gap-4">
             <h1 className='w-[100%] text-center text-[1.5em] text-[#f7f9fb] font-bold'>
@@ -27,7 +32,7 @@ const Login = () => {
             <div className='w-[100%] flex justify-center items-center gap-4'>
                 <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 
                 text-[#444] p-[10px] flex justify-center items-center gap-3 
-                rounded-[100%] font-bold'>
+                rounded-[100%] font-bold' onClick={facebookLogin}>
                     <Facebook />
                 </button>
                 <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 

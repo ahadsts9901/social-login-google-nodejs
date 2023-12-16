@@ -1,4 +1,6 @@
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Strategy as FacebookStrategy } from "passport-facebook";
+// import { Strategy as GithubStrategy } from "passport-github-2";
 import { userModel } from "./schema.mjs";
 import passport from "passport";
 import "dotenv/config";
@@ -75,6 +77,17 @@ passport.use(
     }
   )
 );
+
+// facebok strategy from passport.js to get user data
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: "/api/v1/auth/facebook/callback"
+},
+  function (accessToken, refreshToken, profile, cb) {
+    console.log("facebookData: ", profile);
+  }
+));
 
 // serialize user
 passport.serializeUser((user, done) => {

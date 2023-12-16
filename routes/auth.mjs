@@ -6,7 +6,7 @@ import "../passport.mjs"
 const router = express.Router();
 
 // client url
-const CLIENT_URL = "/";
+const CLIENT_URL = "http://localhost:3000";
 
 // if login fail
 router.get("/login/failed", (req, res) => {
@@ -29,19 +29,34 @@ router.post("/logout", async (req, res, next) => {
   req.logout();
 
   console.log("logout done");
-  
+
 });
 
-// actual api to hit
+// google: actual api to hit
 router.get(
   "/google",
-  passport.authenticate("google", { scope: ["profile", "email"]})
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-// callback api ti redirect to homepage
+// google: callback api to redirect to homepage
 router.get(
   "/google/callback",
   passport.authenticate("google", {
+    successRedirect: CLIENT_URL, // redirect to homepage on success
+    failureRedirect: "/login/failed", //redirect to error on error
+  })
+);
+
+// facebook: actual api to hit for
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["profile", "email"] })
+);
+
+// facebook: callback api to redirect to homepage for
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
     successRedirect: CLIENT_URL, // redirect to homepage on success
     failureRedirect: "/login/failed", //redirect to error on error
   })
