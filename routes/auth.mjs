@@ -6,7 +6,8 @@ import "../passport.mjs"
 const router = express.Router();
 
 // client url
-const CLIENT_URL = "http://localhost:3000";
+// const CLIENT_URL = "http://localhost:3000";
+const CLIENT_URL = "/";
 
 // if login fail
 router.get("/login/failed", (req, res) => {
@@ -50,7 +51,7 @@ router.get(
 // facebook: actual api to hit for
 router.get(
   "/facebook",
-  passport.authenticate("facebook", { scope: ["profile", "email"] })
+  passport.authenticate("facebook")
 );
 
 // facebook: callback api to redirect to homepage for
