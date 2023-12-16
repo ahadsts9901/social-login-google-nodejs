@@ -20,9 +20,9 @@ const Login = () => {
     };
 
     // facebook login function
-    const facebookLogin = () => {
-        window.open(`${baseUrl}/api/v1/auth/facebook`, "_self");
-    }
+    // const facebookLogin = () => {
+    //     window.open(`${baseUrl}/api/v1/auth/facebook`, "_self");
+    // }
 
     return (
         <div className="login w-[100%] h-[100vh] p-4 flex flex-col justify-center items-center gap-4">
@@ -30,21 +30,23 @@ const Login = () => {
                 Social Login With NodeJS
             </h1>
             <div className='w-[100%] flex justify-center items-center gap-4'>
-                <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 
+                {/* <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 
                 text-[#444] p-[10px] flex justify-center items-center gap-3 
-                rounded-[100%] font-bold' onClick={facebookLogin}>
+                rounded-[100%] font-bold'
+                onClick={facebookLogin}
+                >
                     <Facebook />
-                </button>
+                </button> */}
                 <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 
                 text-[#444] p-[10px] flex justify-center items-center gap-3 
                 rounded-[100%] font-bold' onClick={googleLogin}>
                     <Google />
                 </button>
-                <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 
+                {/* <button className='text-[1.5em] w-[2em] h-[2em] bg-[#f7f9fb] 
                 text-[#444] p-[10px] flex justify-center items-center gap-3 
                 rounded-[100%] font-bold'>
                     <Apple />
-                </button>
+                </button> */}
             </div>
         </div>
     )

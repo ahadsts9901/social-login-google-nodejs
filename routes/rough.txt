@@ -1,0 +1,30 @@
+# facebook apis
+
+// facebook: actual api to hit for
+router.get(
+  "/facebook",
+  passport.authenticate("facebook")
+);
+
+// facebook: callback api to redirect to homepage for
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: CLIENT_URL, // redirect to homepage on success
+    failureRedirect: "/login/failed", //redirect to error on error
+  })
+);
+
+
+# facebook passport
+
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: "http:localhost:5002/api/v1/auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'email', 'name', 'picture']
+},
+  function (accessToken, refreshToken, profile, cb) {
+    console.log("facebookData: ", profile);
+  }
+));

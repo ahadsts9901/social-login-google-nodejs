@@ -78,18 +78,6 @@ passport.use(
   )
 );
 
-// facebok strategy from passport.js to get user data
-passport.use(new FacebookStrategy({
-  clientID: process.env.FACEBOOK_APP_ID,
-  clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "http:localhost:5002/api/v1/auth/facebook/callback",
-  profileFields: ['id', 'displayName', 'email', 'name', 'picture']
-},
-  function (accessToken, refreshToken, profile, cb) {
-    console.log("facebookData: ", profile);
-  }
-));
-
 // serialize user
 passport.serializeUser((user, done) => {
   done(null, user); // serializing the entire user object

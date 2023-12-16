@@ -48,19 +48,4 @@ router.get(
   })
 );
 
-// facebook: actual api to hit for
-router.get(
-  "/facebook",
-  passport.authenticate("facebook")
-);
-
-// facebook: callback api to redirect to homepage for
-router.get(
-  "/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: CLIENT_URL, // redirect to homepage on success
-    failureRedirect: "/login/failed", //redirect to error on error
-  })
-);
-
 export default router;
